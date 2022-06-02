@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+  head
+    title #{pageTitle} | MYANDUBE
+    link(rel="stylesheet" href="https://unpkg.com/mvp.css")
+  body
+    header
+      h1=pageTitle
+    main
+      nav 
+        ul 
+          li 
+            a(href="/join") Join
+          li 
+            a(href="/login") Login
+          li 
+            a(href="/logout") Logout 
+      block contents
+    include partials/footer    
