@@ -1,0 +1,14 @@
+extends base
+include mixins/video
+
+block contents 
+    form(methd="GET")
+        input(name="title" type="text" placeholder="Search Title")
+        input(name="hashtag" type="text" placeholder="Search Hashtag")
+        input(type="submit" value="Search")
+    div 
+        each video in videos 
+            +video(video)
+        else
+            if hashtag||title
+                span Not Found

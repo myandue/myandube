@@ -1,0 +1,16 @@
+extends base
+
+block contents
+    div 
+        p=video.description 
+        small #{video.meta.views} #{video.views===1? "view" : "views"}
+        br
+        small #{video.meta.rating}/5
+        br
+        small=video.hashtags
+        br
+        small=video.createdAt
+    hr
+    a(href=`${video.id}/edit`) Edit Video &rarr;
+    br
+    a(href=`${video.id}/delete`) Delete Video &rarr;

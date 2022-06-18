@@ -6,14 +6,20 @@ html(lang="en")
   body
     header
       h1=pageTitle
-    main
       nav 
         ul 
           li 
+            a(href="/") Home
+          li 
             a(href="/join") Join
+          li
+            a(href="/video/upload") Upload
+          li
+            a(href="/search") Search
           li 
             a(href="/login") Login
           li 
             a(href="/logout") Logout 
+    main
       block contents
     include partials/footer    

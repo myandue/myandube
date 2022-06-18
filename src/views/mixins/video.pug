@@ -1,5 +1,10 @@
 mixin video(info)
-    h3=info.title 
-    ul 
-        li=info.rating 
-        li=info.comments
+    div 
+        h2
+            a(href=`/video/${info.id}`) #{info.title}
+        p=info.description 
+        each hashtag in info.hashtags
+            a(href=`/search?hashtag=${hashtag.slice(1)}`)=hashtag
+        br
+        small=info.createdAt
+    hr
