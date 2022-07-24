@@ -1,25 +1,8 @@
 doctype html
 html(lang="en")
-  head
-    title #{pageTitle} | MYANDUBE
-    link(rel="stylesheet" href="https://unpkg.com/mvp.css")
+  include partials/head
   body
-    header
-      h1=pageTitle
-      nav 
-        ul 
-          li 
-            a(href="/") Home
-          li 
-            a(href="/join") Join
-          li
-            a(href="/video/upload") Upload
-          li
-            a(href="/search") Search
-          li 
-            a(href="/login") Login
-          li 
-            a(href="/logout") Logout 
+    include partials/header
     main
       block contents
-    include partials/footer    
+    include partials/footer

@@ -1,0 +1,18 @@
+extends base
+
+block contents 
+    if errMsg 
+        span=errMsg
+    form(method="POST")
+        input(name="name" placeholder="Name" type="text" required minlength="1")
+        input(name="username" placeholder="Username" type="text" required minlength="1")
+        input(name="email" placeholder="Email" type="email" required)
+        input(name="birthday" placeholder="Name" type="date" min="1960-01-01")
+        input(name="password" placeholder="Password" type="password" required minlength="8")
+        input(name="password2" placeholder="Password Confirmation" type="password" required minlength="8")
+        input(type="submit" value="JOIN")
+    br
+    a(href="/user/github/start") Continue with Github &rarr;
+    hr
+    h4 Do you have an account? 
+        a(href="/join") Log In &rarr;

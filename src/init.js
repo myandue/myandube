@@ -1,5 +1,6 @@
 //import 용, 서버 초기화 용 파일
 
+import "dotenv/config";
 import "./db";
 import "./models/Video";
 
