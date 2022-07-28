@@ -1,0 +1,7 @@
+extends base
+
+block contents
+    div 
+        h4=loggedInUser.email 
+    hr
+    a(href=`${loggedInUser._id}/edit`) Edit Profile &rarr;

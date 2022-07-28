@@ -1,0 +1,13 @@
+extends base
+
+block contents 
+    if errMsg 
+        span=errMsg 
+    form(method="POST")
+        input(name="name" placeholder="Name" value=loggedInUser.name type="text" required minlength="1")
+        input(name="username" placeholder="Username" value=loggedInUser.username type="text" required minlength="1")
+        input(name="email" placeholder="Email" value=loggedInUser.email type="email" required)
+        input(name="birthday" value=loggedInUser.birthday type="date" min="1960-01-01")
+        input(type="submit" value="SAVE")
+    br
+    a(href="edit/password") Do you want to change your password? &rarr;

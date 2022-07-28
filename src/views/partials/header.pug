@@ -9,7 +9,7 @@ header
       ul    
         if loggedIn
           li 
-            a(href=`/users/${loggedInUser._id}`) #{loggedInUser.username}의 Profile
+            a(href=`/user/${loggedInUser._id}`) #{loggedInUser.username}의 Profile
           li
             a(href="/video/upload") Upload
           li 

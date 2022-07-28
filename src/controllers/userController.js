@@ -120,14 +120,37 @@ export const logout = (req, res) => {
     return res.redirect("/");
 }
 
-export const editUser = (req, res) => {
-    return res.send("editUser");
+export const profile = (req, res) => {
+    return res.render("profile",{pageTitle:req.session.loggedInUser.username});
+}
+
+export const getEditUser = (req, res) => {
+    return res.render("editUser", {pageTitle:`Edit : ${req.session.loggedInUser.username}`});
+}
+
+export const postEditUser = async(req, res) => {
+    const {params:{id},body:{name, username, email, birthday}}= req;
+    const user = await User.findById(id);
+    if(user.username!==username){
+        const usernameExist = await User.exists({username})
+        if(usernameExist){
+            const errMsg = "This username is already taken."
+            return res.status(400).render("editUser", {pageTitle:`Edit : ${req.session.loggedInUser.username}`, errMsg});  
+        } 
+    } else if(user.email!==email){
+        const emailExist= await User.exists({email})
+        if(emailExist){
+            const errMsg = "This email is already taken."
+            return res.status(400).render("editUser", {pageTitle:`Edit : ${req.session.loggedInUser.username}`, errMsg});  
+        } 
+    }
+    await User.findByIdAndUpdate(id,{
+        name, username,email,birthday
+    });
+    req.session.loggedInUser=await User.findById(id);
+    return res.redirect(`/user/${id}`);
 }
 
 export const deleteUser = (req, res) => {
     return res.send("deleteUser");
-}
-
-export const profile = (req, res) => {
-    return res.send("profile");
 }
