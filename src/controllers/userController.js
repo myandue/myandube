@@ -25,7 +25,7 @@ export const postJoin = async(req, res) => {
     const user = await User.create({email, name, username, birthday, password});
     req.session.loggedIn=true,
     req.session.loggedInUser=user;
-    return res.redirect("/");
+    return res.redirect("/login");
 }
 
 export const getLogin = (req, res) => {
@@ -149,6 +149,32 @@ export const postEditUser = async(req, res) => {
     });
     req.session.loggedInUser=await User.findById(id);
     return res.redirect(`/user/${id}`);
+}
+
+export const getChangePassword = async(req, res) => {
+    return res.render("changePassword", {pageTitle:"Change Password"});
+}
+
+export const postChangePassword = async(req, res) => {
+    const { 
+        params : {id},
+        body: {old, new1, new2} ,   
+    } = req;
+    const pageTitle = "Change Password";
+    const user = await User.findById(id);
+    if(new1!==new2){
+        const errMsg = "Password confirmation doesn't match."
+        return res.status(400).render("changePassword", {pageTitle, errMsg});
+    } 
+    const oldConfirm = await bcrypt.compare(old,user.password);
+    if(!oldConfirm){
+        const errMsg = "Old Password is not correct."
+        return res.status(400).render("changePassword", {pageTitle, errMsg});
+    }
+    user.password=new1;
+    await user.save();
+    req.session.destroy();
+    return res.redirect("/login");
 }
 
 export const deleteUser = (req, res) => {

@@ -10,4 +10,5 @@ block contents
         input(name="birthday" value=loggedInUser.birthday type="date" min="1960-01-01")
         input(type="submit" value="SAVE")
     br
-    a(href="edit/password") Do you want to change your password? &rarr;
+    if !loggedInUser.socialOnly
+        a(href="edit/password") Do you want to change your password? &rarr;
